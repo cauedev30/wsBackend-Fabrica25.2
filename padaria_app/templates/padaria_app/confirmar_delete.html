@@ -1,0 +1,22 @@
+<!-- template d confirmação de deleção de produto -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar exclusão</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; text-align: center; }
+        button { background-color: #dc3545; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        a { margin-left: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Tem certeza que deseja deletar "{{ produto.nome }}"?</h1>
+    <p>Esta ação não pode ser desfeita.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+        <a href="{% url 'lista_produtos' %}">Não, voltar</a>
+    </form>
+</body>
+</html>

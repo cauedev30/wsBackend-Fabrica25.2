@@ -1,0 +1,19 @@
+<!-- esse html vai servir para mostrar o deletar produtos -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>confirmar exclusão</title>
+     <style> body { font-family: sans-serif; margin: 2em; text-align: center; } </style>
+</head>
+<body>
+    <h1>Tem certeza que deseja deletar "{{ produto.nome }}"?</h1>
+    <p>Esta ação não pode ser desfeita.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #dc3545; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Sim, deletar</button>
+        <a href="{% url 'lista_produtos' %}" style="margin-left: 1em;">Não, voltar</a>
+    </form>
+</body>
+</html>

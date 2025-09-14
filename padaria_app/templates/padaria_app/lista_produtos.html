@@ -1,0 +1,68 @@
+
+{% load custom_filters %}
+<!-- esse html vai servir para mostrar a lista de produtos -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lista de produtos</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f9f9f9; }
+        h1, p { text-align: center; }
+        table { width: 80%; margin: 2em auto; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #e8a038; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        a { text-decoration: none; }
+        .actions a { margin-right: 10px; }
+        .btn { padding: 8px 15px; border-radius: 5px; color: white; display: inline-block; text-align: center; }
+        .btn-add { background-color: #28a745; margin: 0 auto 1em; display: block; width: 200px; }
+        .btn-edit { background-color: #ffc107; }
+        .btn-delete { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>Produtos da Padaria</h1>
+    <p><strong>Cotação do Dólar hoje:</strong> R$ {{ cotacao_dolar }}</p>
+
+    <a href="{% url 'adicionar_produto' %}" class="btn btn-add">Adicionar Novo Produto</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.nome }}</td>
+                <td>
+                    R$ {{ produto.preco }}
+                    {% if cotacao_dolar and cotacao_dolar != 'N/A' and cotacao_dolar != 'Erro ao buscar cotação' %}
+                        <br>
+                        <span style="color: #888; font-size: 0.95em;">(US$ {{ produto.preco|floatformat:2|div:cotacao_dolar|floatformat:2 }})</span>
+                    {% endif %}
+                </td>
+                <td>{{ produto.estoque }}</td>
+                <td>{{ produto.categoria.nome }}</td>
+                <td class="actions">
+                    <a href="{% url 'editar_produto' produto.id %}" class="btn btn-edit">Editar</a>
+                    <a href="{% url 'deletar_produto' produto.id %}" class="btn btn-delete">Deletar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center;">Nenhum produto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

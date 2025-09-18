@@ -2,8 +2,7 @@
 
 ##  Descrição
 
-Este projeto é um **gerenciador de produtos** desenvolvido para uma padaria utilizando **Python, Django e Django REST Framework (DRF)**.
-O objetivo é permitir o controle dos produtos de forma simples e eficiente, implementando as operações básicas de um sistema de gestão.
+Este projeto é um gerenciador de produtos desenvolvido para uma padaria utilizando Python, Django e Django REST Framework (DRF). O objetivo é permitir o controle dos produtos de forma simples e eficiente, implementando as operações básicas de um sistema de gestão. Além disso, o sistema também possui a funcionalidade de mostrar o valor dos produtos em dólar, facilitando a visualização de preços em outra moeda.
 
 ---
 
